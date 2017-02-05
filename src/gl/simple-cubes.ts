@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Scene from './scene'
 
-export default class TestScene extends Scene {
+export default class SimpeCubes extends Scene {
 
   private cube: THREE.Mesh
 

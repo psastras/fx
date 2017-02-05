@@ -1,18 +1,19 @@
 import React from 'react'
-import TestScene from 'src/gl/test-scene'
+import IScene from 'src/gl/scene'
+import Scene from 'src/gl/simple-cubes'
 import './home.scss'
 
 export default class Home extends React.Component<{}, {}> {
 
   public refs: {
-    canvas: any,
+    canvas: Element,
   }
 
-  private scene: any
+  private scene: IScene
 
   public componentDidMount() {
-    this.scene = new TestScene(this.refs.canvas)
-    this.scene.render()
+    this.scene = new Scene(this.refs.canvas)
+    this.scene.run()
   }
 
   public render(): JSX.Element {
