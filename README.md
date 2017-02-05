@@ -1,5 +1,7 @@
 # fx
 
+[![CircleCI](https://circleci.com/gh/psastras/fx.svg?style=shield&circle-token=:circle-ci-badge-token)](https://circleci.com/gh/psastras/fx/tree/master)
+
 Source code for personal home page [psastras.github.io](https://psastras.github.io).
 
 Written in React, Typescript and Three.js.

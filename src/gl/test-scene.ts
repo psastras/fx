@@ -26,7 +26,7 @@ export default class TestScene {
 
     element.appendChild(this.renderer.domElement)
     const geometry = new THREE.DodecahedronGeometry(1, 1)
-    const material = new THREE.MeshBasicMaterial({ color: 0x999999, wireframe: true })
+    const material = new THREE.MeshBasicMaterial({ color: 0xcccccc, wireframe: true })
     this.cube = new THREE.Mesh(geometry, material)
     this.scene.add(this.cube)
   }

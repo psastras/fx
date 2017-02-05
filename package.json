@@ -8,7 +8,24 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js",
     "lint": "tslint --project src",
-    "start": "webpack-dev-server --config webpack.dev.config.js"
+    "start": "webpack-dev-server --config webpack.dev.config.js",
+    "pretest": "webpack --config webpack.test.config.js",
+    "test": "nyc ava --verbose",
+    "posttest": "npm run lint"
+  },
+  "ava": {
+    "files": [
+      ".build/test/**/*.js"
+    ],
+    "require": [
+      "source-map-support/register"
+    ],
+    "concurrency": 4
+  },
+  "nyc": {
+    "exclude": [
+      ".build"
+    ]
   },
   "devDependencies": {
     "@types/node": "^7.0.5",
@@ -23,17 +40,21 @@
     "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
     "file-loader": "^0.10.0",
+    "glob": "^7.1.1",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.0",
+    "nyc": "^10.1.2",
     "react-hot-loader": "next",
     "sass-loader": "^4.1.1",
+    "source-map-support": "^0.4.11",
     "style-loader": "^0.13.1",
     "ts-loader": "^2.0.0",
     "tslint": "^4.4.2",
     "typescript": "^2.1.5",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "^2.3.0",
+    "webpack-node-externals": "^1.5.4"
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
