@@ -4,8 +4,6 @@ git clone git@github.com:$CIRCLE_PROJECT_USERNAME/psastras.github.io.git -b mast
 rm -rf gh-pages/*
 cp -rf dist/* gh-pages/
 cd gh-pages
-touch CNAME
-echo "psastras.io" >> CNAME
 git config --global user.email "psastras@gmail.com"
 git config --global user.name $CIRCLE_PROJECT_USERNAME
 git add .
