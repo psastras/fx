@@ -1,6 +1,6 @@
 # fx
 
-Source code for personal home page [psastras.github.io](psastras.github.io).
+Source code for personal home page [psastras.github.io](https://psastras.github.io).
 
 Written in React, Typescript and Three.js.
 
