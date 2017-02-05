@@ -26,7 +26,7 @@
     letter-spacing: 0.25em;
     text-transform: uppercase;
     font-size: 1em;
-    background: yellow;
+    background: rgba(255, 255, 0, 0.5);
     padding: 1em
   }
 
@@ -74,4 +74,23 @@
     width: 100% !important;
     height: 99% !important;
   }
+}
+
+#home-canvas-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  box-shadow: inset 0 0 10em #666;
+}
+
+.bottom-right {
+  text-transform: uppercase;
+  font-size: 0.25em;
+  position: absolute;
+  letter-spacing: 0.1em;
+  right: 3em;
 }

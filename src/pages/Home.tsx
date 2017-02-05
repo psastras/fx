@@ -18,6 +18,7 @@ export default class Home extends React.Component<{}, {}> {
   public render(): JSX.Element {
     return (
       <div id='home'>
+        <div id='home-canvas-overlay'></div>
         <div ref='canvas' id='home-canvas'></div>
         <h1>PS</h1>
         <h2>Paul Sastrasinh</h2>
@@ -29,6 +30,9 @@ export default class Home extends React.Component<{}, {}> {
           <a target='_blank' href='https://www.linkedin.com/in/paul-sastrasinh-82480153/'>
             <i className='fa fa-linkedin-square' aria-hidden='true'></i>
           </a>
+          <div className='bottom-right'>
+            <a target='_blank' href='https://github.com/psastras/fx'>Source Code</a>
+          </div>
         </div>
       </div>
     );

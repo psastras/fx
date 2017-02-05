@@ -25,11 +25,8 @@ export default class TestScene {
     this.renderer.setSize(element.clientWidth, element.clientHeight)
 
     element.appendChild(this.renderer.domElement)
-    this.light = new THREE.DirectionalLight(0xffffff);
-    this.light.position.set(1, 1, 1).normalize();
-    this.scene.add(this.light)
     const geometry = new THREE.DodecahedronGeometry(1, 1)
-    const material = new THREE.MeshBasicMaterial({ color: 0xcccccc, wireframe: true })
+    const material = new THREE.MeshBasicMaterial({ color: 0x999999, wireframe: true })
     this.cube = new THREE.Mesh(geometry, material)
     this.scene.add(this.cube)
   }
