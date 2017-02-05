@@ -1,6 +1,6 @@
 import React from 'react'
-import IScene from 'src/gl/scene'
-import Scene from 'src/gl/simple-cubes'
+import Scene from 'src/gl/scene'
+import TestScene from 'src/gl/test-scene'
 import './home.scss'
 
 export default class Home extends React.Component<{}, {}> {
@@ -9,10 +9,10 @@ export default class Home extends React.Component<{}, {}> {
     canvas: Element,
   }
 
-  private scene: IScene
+  private scene: TestScene
 
   public componentDidMount() {
-    this.scene = new Scene(this.refs.canvas)
+    this.scene = new TestScene(this.refs.canvas)
     this.scene.run()
   }
 
