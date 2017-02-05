@@ -1,0 +1,21 @@
+$fa-font-path:"../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome";
+@import "./colors.scss";
+
+@font-face {
+    font-family: "Simplifica";
+    src: url("assets/fonts/simplifica.woff") format('woff');
+}
+
+@font-face {
+    font-family: "Qanelas";
+    src: url("assets/fonts/qanelas.woff") format('woff');
+}
+
+body {
+  background: radial-gradient(transparent, rgb(200, 200, 200));
+  color: $black;
+  margin: 0;
+  padding: 0;
+  font-family: Qanelas, Helvetica, Sans-Serif
+}

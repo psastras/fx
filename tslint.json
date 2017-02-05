@@ -1,0 +1,12 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "only-arrow-functions": [ true ],
+    "ordered-imports": [ false ],
+    "quotemark": [ true, "single", "avoid-escape" ],
+    "semicolon": [ false, "always" ],
+    "space-before-function-paren": [ true, "never" ],
+    "trailing-comma": [ true, {"multiline": "always", "singleline": "never"} ],
+    "eofline": false
+  }
+}
