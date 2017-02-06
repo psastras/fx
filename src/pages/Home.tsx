@@ -1,6 +1,6 @@
 import React from 'react'
 import Scene from 'src/gl/scene'
-import TestScene from 'src/gl/test-scene'
+import TestScene from 'src/gl/simple-cubes'
 import './home.scss'
 
 export default class Home extends React.Component<{}, {}> {
