@@ -39,6 +39,7 @@ export default class SimpleCubes extends Scene {
     }
 
     document.onmousemove = (e: MouseEvent) => {
+      // retarget the camera, this assumes the camera is parallel to the xy plane
       const x = (e.clientX - element.clientWidth / 2) / element.clientWidth * radius / 5
       const y = (e.clientY - element.clientHeight / 2) / element.clientHeight * radius / 5
       this.cameraTarget = new THREE.Vector3(-x, y, 0)
@@ -46,11 +47,8 @@ export default class SimpleCubes extends Scene {
   }
 
   protected render(dt: number): void {
-    this.cameraRotation += 0.00005 * dt
     this.hue = this.hue + 0.005 * dt % 360
     this.light.color = new THREE.Color(Color({h: this.hue, s: 50, v: 255}).rgbNumber())
-    this.camera.position.x = Math.sin(this.cameraRotation) * 75
-    this.camera.position.z = Math.cos(this.cameraRotation) * 75
 
     for (let cube of this.cubes) {
       cube.objectPivot.rotateOnAxis(cube.rotationAxis, 0.001 * dt * cube.rotationSpeed)
