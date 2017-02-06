@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 import Scene from './scene'
 
-
 interface ICube {
   mesh: THREE.Mesh
   objectPivot: THREE.Object3D
