@@ -2,14 +2,14 @@ import * as THREE from 'three'
 
 abstract class Scene {
 
-  protected readonly element: Element
+  protected readonly element: HTMLElement
   protected readonly scene: THREE.Scene
   protected readonly renderer: THREE.Renderer | any
   protected readonly camera: THREE.Camera
 
   protected prevTimestamp: number
 
-  constructor(element: Element) {
+  constructor(element: HTMLElement) {
     this.element = element
     this.scene = new THREE.Scene()
     this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })

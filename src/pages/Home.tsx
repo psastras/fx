@@ -6,7 +6,7 @@ import './home.scss'
 export default class Home extends React.Component<{}, {}> {
 
   public refs: {
-    canvas: Element,
+    canvas: HTMLElement,
   }
 
   private scene: TestScene
@@ -21,9 +21,11 @@ export default class Home extends React.Component<{}, {}> {
       <div id='home'>
         <div id='home-canvas-overlay'></div>
         <div ref='canvas' id='home-canvas'></div>
-        <h1>PS</h1>
-        <h2>Paul Sastrasinh</h2>
-        <h3>Full Stack Software Engineer // NYC Area</h3>
+        <div id='home-text'>
+          <h1>PS</h1><br />
+          <h2>Paul Sastrasinh</h2><br />
+          <h3>Full Stack Software Engineer // NYC Area</h3>
+        </div>
         <div id='home-footer'>
           <a target='_blank' href='https://github.com/psastras'>
             <i className='fa fa-github' aria-hidden='true'></i>

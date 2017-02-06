@@ -4,7 +4,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     index: './src/index.tsx',
-    vendor: ['react', 'react-dom', 'react-router', 'three']
+    vendor: ['react', 'react-dom', 'react-router', 'three', 'color']
   },
 
   output: {

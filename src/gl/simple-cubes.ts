@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import * as Color from 'color'
 import Scene from './scene'
 
 interface ICube {
@@ -10,13 +11,14 @@ interface ICube {
   rotationSpeed: number
 }
 
-export default class SimpeCubes extends Scene {
+export default class SimpleCubes extends Scene {
 
   private cubes: ICube[] = []
   private cameraRotation = 0
   private light: THREE.Light
+  private hue: number = 0
 
-  constructor(element: Element, nCubes: number = 250, radius: number = 100, size = 10) {
+  constructor(element: HTMLElement, nCubes: number = 250, radius: number = 100, size = 10) {
     super(element)
 
     const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 50, specular: 30 })
@@ -34,7 +36,8 @@ export default class SimpeCubes extends Scene {
   }
 
   protected render(dt: number): void {
-    this.cameraRotation += 0.00005 * dt;
+    this.hue = this.hue + 0.005 * dt % 360
+    this.light.color = new THREE.Color(Color({h: this.hue, s: 50, v: 255}).rgbNumber())
     this.camera.position.x = Math.sin(this.cameraRotation) * 75;
     this.camera.position.z = Math.cos(this.cameraRotation) * 75;
     this.camera.lookAt(this.scene.position)
