@@ -31,6 +31,8 @@ export default class SimpleCubes extends Scene {
     this.scene.add(this.light)
     this.camera.lookAt(this.scene.position)
     this.cameraDirection = this.scene.position
+    this.camera.position.x = radius * 0.75
+    this.camera.position.z = radius * 0.75
 
     for (let i = 0; i < nCubes; i++) {
       const cube = this.randCube(scale, radius, material)
@@ -39,7 +41,6 @@ export default class SimpleCubes extends Scene {
     }
 
     document.onmousemove = (e: MouseEvent) => {
-      // retarget the camera, this assumes the camera is parallel to the xy plane
       const x = (e.clientX - element.clientWidth / 2) / element.clientWidth * radius / 5
       const y = (e.clientY - element.clientHeight / 2) / element.clientHeight * radius / 5
       this.cameraTarget = new THREE.Vector3(-x, y, 0)
