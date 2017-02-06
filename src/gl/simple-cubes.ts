@@ -48,6 +48,7 @@ export default class SimpleCubes extends Scene {
   }
 
   protected render(dt: number): void {
+    this.scene.rotateY(0.0001 * dt)
     this.hue = this.hue + 0.005 * dt % 360
     this.light.color = new THREE.Color(Color({h: this.hue, s: 50, v: 255}).rgbNumber())
 
