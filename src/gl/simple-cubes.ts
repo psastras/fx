@@ -17,6 +17,8 @@ export default class SimpleCubes extends Scene {
   private cameraRotation = 0
   private light: THREE.Light
   private hue: number = 0
+  private cameraTarget: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
+  private cameraDirection: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
 
   constructor(element: HTMLElement, nCubes: number = 250, radius: number = 100, size = 10) {
     super(element)
@@ -27,25 +29,40 @@ export default class SimpleCubes extends Scene {
     this.light = new THREE.PointLight(0xffff00, 5, 150)
     this.light.position.set(50, 50, 50)
     this.scene.add(this.light)
+    this.camera.lookAt(this.scene.position)
+    this.cameraDirection = this.scene.position
 
     for (let i = 0; i < nCubes; i++) {
       const cube = this.randCube(scale, radius, material)
       this.cubes.push(cube)
       this.scene.add(cube.originPivot)
     }
+
+    document.onmousemove = (e: MouseEvent) => {
+      const x = (e.clientX - element.clientWidth / 2) / element.clientWidth * radius / 5
+      const y = (e.clientY - element.clientHeight / 2) / element.clientHeight * radius / 5
+      this.cameraTarget = new THREE.Vector3(-x, y, 0)
+    }
   }
 
   protected render(dt: number): void {
+    this.cameraRotation += 0.00005 * dt
     this.hue = this.hue + 0.005 * dt % 360
     this.light.color = new THREE.Color(Color({h: this.hue, s: 50, v: 255}).rgbNumber())
-    this.camera.position.x = Math.sin(this.cameraRotation) * 75;
-    this.camera.position.z = Math.cos(this.cameraRotation) * 75;
-    this.camera.lookAt(this.scene.position)
+    this.camera.position.x = Math.sin(this.cameraRotation) * 75
+    this.camera.position.z = Math.cos(this.cameraRotation) * 75
 
     for (let cube of this.cubes) {
       cube.objectPivot.rotateOnAxis(cube.rotationAxis, 0.001 * dt * cube.rotationSpeed)
       cube.originPivot.rotateOnAxis(cube.rotationAxis, 0.0001 * dt * cube.rotationSpeed)
     }
+
+    // gradually point the camera towards the cameraTarget
+    const cameraDelta = new THREE.Vector3()
+      .subVectors(this.cameraTarget, this.cameraDirection)
+    this.cameraDirection = new THREE.Vector3()
+      .addVectors(this.cameraDirection, cameraDelta.multiplyScalar(0.05))
+    this.camera.lookAt(this.cameraDirection)
   }
 
   private randCube(scale: number, radius: number, material: THREE.Material): ICube {
