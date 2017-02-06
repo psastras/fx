@@ -13,6 +13,7 @@ abstract class Scene {
     this.element = element
     this.scene = new THREE.Scene()
     this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
     this.renderer.setClearColor(0xffffff, 0)
     this.element.appendChild(this.renderer.domElement)
 
