@@ -6,11 +6,13 @@ abstract class Scene {
   protected readonly scene: THREE.Scene
   protected readonly renderer: THREE.Renderer | any
   protected readonly camera: THREE.Camera
+  protected readonly callRender: boolean
 
   protected prevTimestamp: number
 
-  constructor(element: HTMLElement) {
+  constructor(element: HTMLElement, callRender: boolean = true) {
     this.element = element
+    this.callRender = callRender
     this.scene = new THREE.Scene()
     this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
     this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
@@ -37,7 +39,9 @@ abstract class Scene {
     this.prevTimestamp = timestamp
     requestAnimationFrame(this.run.bind(this))
     this.render(dt)
-    this.renderer.render(this.scene, this.camera)
+    if (this.callRender) {
+      this.renderer.render(this.scene, this.camera)
+    }
   }
 
   protected abstract render(dt: number): void

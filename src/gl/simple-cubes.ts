@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import * as Color from 'color'
+import PostProcessor from './postprocessor'
 import Scene from './scene'
 
 interface ICube {
@@ -19,9 +20,10 @@ export default class SimpleCubes extends Scene {
   private hue: number = 0
   private cameraTarget: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
   private cameraDirection: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
+  private postProcessor: PostProcessor
 
   constructor(element: HTMLElement, nCubes: number = 250, radius: number = 100, size = 10) {
-    super(element)
+    super(element, false)
 
     const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 50, specular: 30 })
     const scale = size * radius / nCubes
@@ -45,6 +47,8 @@ export default class SimpleCubes extends Scene {
       const y = (e.clientY - element.clientHeight / 2) / element.clientHeight * radius / 5
       this.cameraTarget = new THREE.Vector3(-x, y, 0)
     }
+
+    this.postProcessor = new PostProcessor(element, this.renderer, this.scene, this.camera)
   }
 
   protected render(dt: number): void {
@@ -63,6 +67,9 @@ export default class SimpleCubes extends Scene {
     this.cameraDirection = new THREE.Vector3()
       .addVectors(this.cameraDirection, cameraDelta.multiplyScalar(0.05))
     this.camera.lookAt(this.cameraDirection)
+
+    this.renderer.render(this.scene, this.camera)
+    // this.postProcessor.render()
   }
 
   private randCube(scale: number, radius: number, material: THREE.Material): ICube {
