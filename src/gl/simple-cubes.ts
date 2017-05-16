@@ -56,7 +56,7 @@ export default class SimpleCubes extends Scene {
     this.hue = this.hue + 0.005 * dt % 360
     this.light.color = new THREE.Color(Color({h: this.hue, s: 50, v: 255}).rgbNumber())
 
-    for (let cube of this.cubes) {
+    for (const cube of this.cubes) {
       cube.objectPivot.rotateOnAxis(cube.rotationAxis, 0.001 * dt * cube.rotationSpeed)
       cube.originPivot.rotateOnAxis(cube.rotationAxis, 0.0001 * dt * cube.rotationSpeed)
     }

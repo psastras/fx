@@ -1,9 +1,5 @@
 import * as THREE from 'three'
 
-interface IPass {
-
-}
-
 export default class PostProcessor {
 
   private element: HTMLElement

@@ -7,7 +7,7 @@ import { Home } from './pages/Home'
 import './index.scss'
 
 export class App extends React.Component<{}, {}> {
-  render(): JSX.Element {
+  public render(): JSX.Element {
     return (
       <BrowserRouter>
         <Switch>
