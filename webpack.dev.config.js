@@ -45,6 +45,10 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg|eot|woff|svg|ttf|json)/,
         use: ["file-loader"]
       },
+      {
+        test: /\.(vert|frag)/,
+        use: ["raw-loader"]
+      }
     ],
   },
 

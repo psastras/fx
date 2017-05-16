@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import * as Color from 'color'
-import PostProcessor from './postprocessor'
+import { GlitchPass } from 'postprocessing'
 import Scene from './scene'
 
 interface ICube {
@@ -20,7 +20,6 @@ export default class SimpleCubes extends Scene {
   private hue: number = 0
   private cameraTarget: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
   private cameraDirection: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
-  private postProcessor: PostProcessor
 
   constructor(element: HTMLElement, nCubes: number = 250, radius: number = 100, size = 10) {
     super(element, false)
@@ -54,18 +53,16 @@ export default class SimpleCubes extends Scene {
       const y = e.beta / 180.0 // front to back
       this.cameraTarget = new THREE.Vector3(-x * radius, y * radius, 0)
     }
-
-    this.postProcessor = new PostProcessor(element, this.renderer, this.scene, this.camera)
   }
 
   protected render(dt: number): void {
-    this.scene.rotateY(0.0001 * dt)
-    this.hue = this.hue + 0.005 * dt % 360
+    this.scene.rotateY(0.1 * dt)
+    this.hue = this.hue + 5 * dt % 360
     this.light.color = new THREE.Color(Color({h: this.hue, s: 50, v: 255}).rgbNumber())
 
     for (const cube of this.cubes) {
-      cube.objectPivot.rotateOnAxis(cube.rotationAxis, 0.001 * dt * cube.rotationSpeed)
-      cube.originPivot.rotateOnAxis(cube.rotationAxis, 0.0001 * dt * cube.rotationSpeed)
+      cube.objectPivot.rotateOnAxis(cube.rotationAxis, dt * cube.rotationSpeed)
+      cube.originPivot.rotateOnAxis(cube.rotationAxis, 0.1 * dt * cube.rotationSpeed)
     }
 
     // gradually point the camera towards the cameraTarget
@@ -74,9 +71,7 @@ export default class SimpleCubes extends Scene {
     this.cameraDirection = new THREE.Vector3()
       .addVectors(this.cameraDirection, cameraDelta.multiplyScalar(0.05))
     this.camera.lookAt(this.cameraDirection)
-
-    this.renderer.render(this.scene, this.camera)
-    // this.postProcessor.render()
+    this.composer.render(dt)
   }
 
   private randCube(scale: number, radius: number, material: THREE.Material): ICube {

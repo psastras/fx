@@ -47,6 +47,8 @@
     "lodash": "^4.17.4",
     "node-sass": "^4.5.2",
     "nyc": "^10.3.2",
+    "postprocessing": "^2.1.2",
+    "raw-loader": "^0.5.1",
     "react-hot-loader": "@next",
     "react-router-dom": "^4.1.1",
     "sass-loader": "^6.0.5",

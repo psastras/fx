@@ -1,16 +1,18 @@
 import * as THREE from 'three'
+import { EffectComposer, BloomPass, BlurPass, RenderPass } from 'postprocessing'
 
 abstract class Scene {
 
+  protected readonly clock: THREE.Clock
   protected readonly element: HTMLElement
   protected readonly scene: THREE.Scene
   protected readonly renderer: THREE.Renderer | any
   protected readonly camera: THREE.Camera
   protected readonly callRender: boolean
-
-  protected prevTimestamp: number
+  protected readonly composer: any
 
   constructor(element: HTMLElement, callRender: boolean = true) {
+    this.clock = new THREE.Clock()
     this.element = element
     this.callRender = callRender
     this.scene = new THREE.Scene()
@@ -27,20 +29,37 @@ abstract class Scene {
         this.camera.aspect = this.element.clientWidth / this.element.clientHeight
         this.camera.updateProjectionMatrix()
       }
+      this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
       this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
     }, false)
 
     this.camera = this.setupCamera(this.element.clientWidth, this.element.clientHeight)
     this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
+    
+    this.composer = new EffectComposer(this.renderer)
+    this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
+    this.composer.addPass(new RenderPass(this.scene, this.camera))
+
+    const bloomPass = new BloomPass({
+			resolutionScale: 1.0,
+			strength: 5.0,
+			distinction: 5.0,
+      screenMode: false,
+		})
+    const blurPass = new BlurPass({
+      resolutionScale: 1.0,
+    })
+    bloomPass.renderToScreen = true
+    
+    this.composer.addPass(blurPass)
+    this.composer.addPass(bloomPass)
   }
 
-  public run(timestamp?: number): void {
-    const dt = (timestamp && this.prevTimestamp) ? timestamp - this.prevTimestamp : 0
-    this.prevTimestamp = timestamp
+  public run(): void {
     requestAnimationFrame(this.run.bind(this))
-    this.render(dt)
+    this.render(this.clock.getDelta())
     if (this.callRender) {
-      this.renderer.render(this.scene, this.camera)
+      this.composer.render(this.clock.getDelta())
     }
   }
 
