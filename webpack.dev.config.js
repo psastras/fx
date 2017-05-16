@@ -48,7 +48,7 @@ module.exports = {
       {
         test: /\.(vert|frag)/,
         use: ["raw-loader"]
-      }
+      },
     ],
   },
 
