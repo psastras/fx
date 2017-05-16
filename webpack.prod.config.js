@@ -4,7 +4,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     index: './src/index.tsx',
-    vendor: ['react', 'react-dom', 'react-router', 'three', 'color']
+    vendor: ['react', 'react-dom', 'react-router', 'three', 'color', 'postprocessing']
   },
 
   output: {
@@ -19,7 +19,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: [{
           loader: "babel-loader",
-          query: {
+          options: {
             "presets": [
               ["es2015", {
                 "modules": false
@@ -30,6 +30,20 @@ module.exports = {
           }
         }, "ts-loader"],
         exclude: /node_modules/
+      },
+      {
+        test: /\.js?$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            "presets": [
+              ["es2015", {
+                "modules": false
+              }],
+            ]
+          }
+        },
+        include: [path.resolve("node_modules/postprocessing")],
       },
       {
         test: /\.scss$/,

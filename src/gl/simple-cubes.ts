@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import * as Color from 'color'
-import { GlitchPass } from 'postprocessing'
 import Scene from './scene'
 
 interface ICube {
