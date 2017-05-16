@@ -35,22 +35,22 @@ abstract class Scene {
 
     this.camera = this.setupCamera(this.element.clientWidth, this.element.clientHeight)
     this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
-    
+
     this.composer = new EffectComposer(this.renderer)
     this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
     this.composer.addPass(new RenderPass(this.scene, this.camera))
 
     const bloomPass = new BloomPass({
-			resolutionScale: 1.0,
-			strength: 5.0,
-			distinction: 5.0,
+      distinction: 5.0,
+      resolutionScale: 1.0,
       screenMode: false,
-		})
+      strength: 5.0,
+    })
     const blurPass = new BlurPass({
       resolutionScale: 1.0,
     })
     bloomPass.renderToScreen = true
-    
+
     this.composer.addPass(blurPass)
     this.composer.addPass(bloomPass)
   }
