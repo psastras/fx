@@ -1,41 +1,23 @@
 import { AppContainer } from 'react-hot-loader'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Router, Route, Link, browserHistory } from 'react-router'
-import Home from 'src/pages/Home'
+import { Switch, Route } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
+import { App } from './App'
 import './index.scss'
 
-declare const System;
-
-const loadRoute = (cb) => {
-  return (module) => cb(null, module.default);
-}
-
-const routes = {
-  childRoutes: [
-    {
-      path: '*', getComponent(location, cb) {
-        System.import('src/pages/Home').then(loadRoute(cb));
-      },
-    },
-  ],
-  component: Home,
-  path: '/',
-}
-
-const router = () => <Router history={browserHistory} routes={routes} />
 const rootEl = document.getElementById('root')
 const render = (Component) =>
   ReactDOM.render(
     <AppContainer>
-      <Router history={browserHistory} routes={routes} />
+      <Component />
     </AppContainer>,
     rootEl,
   );
 
-render(router)
+render(App)
 
 declare const module;
 if (module.hot) {
-  module.hot.accept('src/pages/Home', () => render(router))
+  module.hot.accept('./App', () => render(App))
 }

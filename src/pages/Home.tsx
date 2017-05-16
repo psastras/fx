@@ -3,7 +3,7 @@ import Scene from 'src/gl/scene'
 import TestScene from 'src/gl/simple-cubes'
 import './home.scss'
 
-export default class Home extends React.Component<{}, {}> {
+export class Home extends React.Component<{}, {}> {
 
   public refs: {
     canvas: HTMLElement,
