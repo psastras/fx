@@ -50,9 +50,9 @@ export default class SimpleCubes extends Scene {
 
     window.ondeviceorientation = (e: DeviceOrientationEvent) => {
       // const z = e.alpha / 180.0 - 1
-      const x = e.beta / 180.0 // front to back
-      const y = e.gamma / 90.0 // left to right
-      this.cameraTarget = new THREE.Vector3(-x * radius / 5, y * radius / 5, 0)
+      const x = e.gamma / 90.0 // left to right
+      const y = e.beta / 180.0 // front to back
+      this.cameraTarget = new THREE.Vector3(-x * radius, y * radius, 0)
     }
 
     this.postProcessor = new PostProcessor(element, this.renderer, this.scene, this.camera)
