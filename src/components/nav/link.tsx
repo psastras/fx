@@ -15,9 +15,9 @@ interface ILinkStateProps {
 class Link extends React.Component<ILinkProps & ILinkStateProps, {}> {
   public render(): JSX.Element {
     return (
-        <RouterLink className={this.props.active && styles.active} to={this.props.to}>
-          {this.props.children}
-        </RouterLink>
+      <RouterLink className={this.props.active && styles.active} to={this.props.to}>
+        {this.props.children}
+      </RouterLink>
     )
   }
 }
