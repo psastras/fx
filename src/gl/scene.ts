@@ -42,12 +42,12 @@ abstract class Scene {
 
     const bloomPass = new BloomPass({
       distinction: 5.0,
-      resolutionScale: 1.0,
+      resolutionScale: 0.5,
       screenMode: false,
       strength: 5.0,
     })
     const blurPass = new BlurPass({
-      resolutionScale: 1.0,
+      resolutionScale: 0.5,
     })
     bloomPass.renderToScreen = true
 
