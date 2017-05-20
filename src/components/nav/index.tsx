@@ -44,10 +44,10 @@ class Nav extends React.PureComponent<INavStateProps & INavDispatchProps, {}> {
                   </ul>
                   <ul className={styles.navLinks}>
                     <li>
-                      <Link to='/test'>Test</Link>
+                      <Link to='/cubes'>Cubes</Link>
                     </li>
                     <li>
-                      <Link to='/cubes'>Cubes</Link>
+                      <Link to='/icosohedron'>Icosohedron</Link>
                     </li>
                   </ul>
                   <ul className={styles.navLinks}>

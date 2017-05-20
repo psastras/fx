@@ -1,6 +1,6 @@
 import React from 'react'
-import TestScene from 'src/gl/test-scene'
-import SimpleCubes from 'src/gl/simple-cubes'
+import Icosohedron from 'src/gl/icosohedron'
+import Cubes from 'src/gl/cubes'
 import Nav from 'src/components/nav'
 import Scene from 'src/components/scene'
 import { Switch, Route } from 'react-router'
@@ -13,9 +13,9 @@ export class Home extends React.PureComponent<{}, {}> {
         <Nav />
         <div className={styles.homeCanvasOverlay}></div>
         <Switch>
-          <Route exact path='/' component={() => <Scene scene={new SimpleCubes()} />} />
-          <Route path='/test' component={() => <Scene scene={new TestScene()} />} />
-          <Route path='/cubes' component={() => <Scene scene={new SimpleCubes()} />} />
+          <Route path='/icosohedron' component={() => <Scene scene={new Icosohedron()} />} />
+          <Route path='/cubes' component={() => <Scene scene={new Cubes()} />} />
+          <Route path='*' component={() => <Scene scene={new Cubes()} />} />
         </Switch>
         <div className={styles.homeText}>
           <h1>PS</h1><br />
