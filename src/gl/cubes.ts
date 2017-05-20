@@ -18,41 +18,22 @@ export default class SimpleCubes extends Scene {
   private cameraRotation = 0
   private light: THREE.Light
   private hue: number = 0
-  private cameraTarget: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
-  private cameraDirection: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
 
-  constructor(private nCubes: number = 250, private radius: number = 100, private size = 10) {
+  constructor(private nCubes: number = 250, private radius: number = 1, private size = 15) {
     super()
   }
 
   protected setup(): void {
     const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 50, specular: 30 })
     const scale = this.size * this.radius / this.nCubes
-    this.light = new THREE.PointLight(0xffff00, 5, 150)
-    this.light.position.set(50, 50, 50)
+    this.light = new THREE.PointLight(0xffff00, 5, 1.5)
+    this.light.position.set(.5, .5, .5)
     this.scene.add(this.light)
-    this.camera.lookAt(this.scene.position)
-    this.cameraDirection = this.scene.position
-    this.camera.position.x = this.radius * 0.75
-    this.camera.position.z = this.radius * 0.75
 
     for (let i = 0; i < this.nCubes; i++) {
       const cube = this.randCube(scale, this.radius, material)
       this.cubes.push(cube)
       this.scene.add(cube.originPivot)
-    }
-
-    document.onmousemove = (e: MouseEvent) => {
-      const x = (e.clientX - this.element.clientWidth / 2) / this.element.clientWidth * this.radius / 5
-      const y = (e.clientY - this.element.clientHeight / 2) / this.element.clientHeight * this.radius / 5
-      this.cameraTarget = new THREE.Vector3(-x, y, 0)
-    }
-
-    window.ondeviceorientation = (e: DeviceOrientationEvent) => {
-      // const z = e.alpha / 180.0 - 1
-      const x = e.gamma / 90.0 // left to right
-      const y = e.beta / 180.0 // front to back
-      this.cameraTarget = new THREE.Vector3(-x * this.radius, y * this.radius, 0)
     }
   }
 

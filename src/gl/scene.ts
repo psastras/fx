@@ -8,6 +8,8 @@ abstract class Scene {
   protected scene: THREE.Scene
   protected renderer: THREE.WebGLRenderer
   protected camera: THREE.Camera
+  protected cameraTarget: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
+  protected cameraDirection: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
   protected callRender: boolean
   protected composer: any
 
@@ -30,6 +32,18 @@ abstract class Scene {
     this.setup()
 
     window.addEventListener('resize', this.onWindowResize, false)
+    document.onmousemove = (e: MouseEvent) => {
+      const x = (e.clientX - this.element.clientWidth / 2) / this.element.clientWidth
+      const y = (e.clientY - this.element.clientHeight / 2) / this.element.clientHeight
+      this.cameraTarget = new THREE.Vector3(-x, y, 0)
+    }
+
+    window.ondeviceorientation = (e: DeviceOrientationEvent) => {
+      // const z = e.alpha / 180.0 - 1
+      const x = e.gamma / 90.0 // left to right
+      const y = e.beta / 180.0 // front to back
+      this.cameraTarget = new THREE.Vector3(-x, y, 0)
+    }
   }
 
   public dispose(): void {
@@ -42,6 +56,13 @@ abstract class Scene {
   public run(): void {
     requestAnimationFrame(this.run.bind(this))
     this.render(this.clock.getDelta())
+    // gradually point the camera towards the cameraTarget
+    const cameraDelta = new THREE.Vector3()
+      .subVectors(this.cameraTarget, this.cameraDirection)
+    this.cameraDirection = new THREE.Vector3()
+      .addVectors(this.cameraDirection, cameraDelta.multiplyScalar(0.025))
+    this.camera.lookAt(this.cameraDirection)
+
     if (this.callRender) {
       this.composer.render(this.clock.getDelta())
     }
