@@ -1,7 +1,7 @@
 import React from 'react'
 import * as NProgress from 'nprogress'
 
-export const progress = <P, S>(): (WrappedComponent: React.ComponentClass<P>) => any => {
+export default <P, S>(): (WrappedComponent: React.ComponentClass<P>) => any => {
   return (WrappedComponent: React.ComponentClass<P>) => {
     return class extends React.Component<P, S> {
 

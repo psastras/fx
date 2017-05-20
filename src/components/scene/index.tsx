@@ -1,12 +1,14 @@
 import React from 'react'
 import GLScene from 'src/gl/scene'
-import { progress } from '../progress'
+import progress from 'src/components/progress'
+import fade from 'src/components/fade'
 const styles = require('./scene.scss')
 
 interface ISceneProps {
   scene: GLScene
 }
 
+@fade()
 @progress()
 export default class Scene extends React.Component<ISceneProps, {}> {
 
