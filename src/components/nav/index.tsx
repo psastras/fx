@@ -1,5 +1,4 @@
 import React from 'react'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { connect } from 'react-redux'
 import { Dispatch, Action } from 'redux'
 import { toggleNav } from './actions';

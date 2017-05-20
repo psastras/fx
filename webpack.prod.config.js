@@ -6,7 +6,8 @@ module.exports = {
     index: './src/index.tsx',
     vendor: [
       'react', 'react-dom', 'react-router', 'three', 'color', 'postprocessing',
-      'react-redux', 'redux', 'redux-actions', 'react-router-dom', 'redux-logger'
+      'react-redux', 'redux', 'redux-actions', 'react-router-dom', 'redux-logger',
+      'history', 'nprogress', 'react-lite', 'react-router-redux', 'react-transition-group'
     ]
   },
 
