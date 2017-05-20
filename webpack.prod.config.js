@@ -7,7 +7,8 @@ module.exports = {
     vendor: [
       'react', 'react-dom', 'react-router', 'three', 'color', 'postprocessing',
       'react-redux', 'redux', 'redux-actions', 'react-router-dom', 'redux-logger',
-      'history', 'nprogress', 'react-lite', 'react-router-redux', 'react-transition-group'
+      'history', 'nprogress', 'react-lite', 'react-router-redux', 'react-transition-group',
+      'classnames'
     ]
   },
 

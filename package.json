@@ -28,6 +28,7 @@
     ]
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.0",
     "@types/color": "^1.0.3",
     "@types/history": "^4.5.1",
     "@types/node": "^7.0.18",
@@ -69,6 +70,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "color": "^1.0.3",
     "font-awesome": "^4.7.0",
     "history": "^4.6.1",

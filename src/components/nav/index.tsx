@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch, Action } from 'redux'
-import { toggleNav } from './actions';
+import { toggleNav } from './actions'
 import { IAppState } from 'src/app-reducer'
 import { Link } from 'react-router-dom'
+import * as classnames from 'classnames'
 import Drawer from 'src/components/nav/drawer'
 const styles = require('./nav.scss')
 
@@ -22,7 +23,8 @@ class Nav extends React.PureComponent<INavStateProps & INavDispatchProps, {}> {
       <div className={styles.nav}>
         <nav>
           <a onClick={this.handleClick}>
-            <i className={styles.iconNav} aria-hidden='true'></i>
+            <i className={classnames(styles.iconNav, this.props.visible && styles.iconNavActive)}
+              aria-hidden='true' />
           </a>
           {this.props.visible && <Drawer /> }
         </nav>

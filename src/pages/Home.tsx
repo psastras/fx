@@ -15,7 +15,7 @@ export class Home extends React.PureComponent<{}, {}> {
         <Switch>
           <Route path='/icosohedron' component={() => <Scene scene={new Icosohedron()} />} />
           <Route path='/cubes' component={() => <Scene scene={new Cubes()} />} />
-          <Route path='*' component={() => <Scene scene={new Cubes()} />} />
+          <Route path='*' component={() => <Scene scene={new Icosohedron()} />} />
         </Switch>
         <div className={styles.homeText}>
           <h1>PS</h1><br />
