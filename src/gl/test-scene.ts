@@ -5,9 +5,7 @@ export default class TestScene extends Scene {
 
   private cube: THREE.Mesh
 
-  constructor(element: HTMLElement) {
-    super(element)
-
+  protected setup(): void {
     const geometry = new THREE.DodecahedronGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({ color: 0xcccccc, wireframe: true })
     this.cube = new THREE.Mesh(geometry, material)

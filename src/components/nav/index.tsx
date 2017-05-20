@@ -44,6 +44,14 @@ class Nav extends React.PureComponent<INavStateProps & INavDispatchProps, {}> {
                   </ul>
                   <ul className={styles.navLinks}>
                     <li>
+                      <Link to='/test'>Test</Link>
+                    </li>
+                    <li>
+                      <Link to='/cubes'>Cubes</Link>
+                    </li>
+                  </ul>
+                  <ul className={styles.navLinks}>
+                    <li>
                       <a target='_blank' href='https://github.com/psastras'>GitHub</a>
                     </li>
                     <li>

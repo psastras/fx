@@ -11,6 +11,7 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
     padding: 0;
     margin: 0;
     display: inline-block;
+    padding: 0rem;
     text-shadow: $cyan -3px 0px 1px, $red 3px 0px 1px;
   }
 
@@ -20,7 +21,7 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
     letter-spacing: 0.25em;
     text-transform: uppercase;
     font-size: 1rem;
-    padding: 0.25em;
+    padding: 0rem;
     display: inline-block;
   }
 
@@ -29,7 +30,7 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 0.1em;
-    padding: 1em;
+    padding: 0rem;
     display: inline-block;
   }
 }
@@ -85,6 +86,7 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
 }
 
 .home-text {
+  padding: 1rem;
   text-align: center;
   width: 100%;
   z-index: 2;

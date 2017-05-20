@@ -3,23 +3,22 @@ import { EffectComposer, RenderPass } from 'postprocessing'
 
 abstract class Scene {
 
-  protected readonly clock: THREE.Clock
-  protected readonly element: HTMLElement
-  protected readonly scene: THREE.Scene
-  protected readonly renderer: THREE.Renderer | any
-  protected readonly camera: THREE.Camera
-  protected readonly callRender: boolean
-  protected readonly composer: any
+  protected clock: THREE.Clock
+  protected element: HTMLCanvasElement
+  protected scene: THREE.Scene
+  protected renderer: THREE.WebGLRenderer
+  protected camera: THREE.Camera
+  protected callRender: boolean
+  protected composer: any
 
-  constructor(element: HTMLElement, callRender: boolean = true) {
+  public init(element: HTMLCanvasElement, callRender: boolean = true): void {
     this.clock = new THREE.Clock()
     this.element = element
     this.callRender = callRender
     this.scene = new THREE.Scene()
-    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    this.renderer = new THREE.WebGLRenderer({ canvas: element, alpha: true, antialias: true })
     this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
     this.renderer.setClearColor(0xffffff, 0)
-    this.element.appendChild(this.renderer.domElement)
 
     window.removeEventListener('resize', () => {
       // no-op
@@ -41,6 +40,13 @@ abstract class Scene {
     const passes = [ new RenderPass(this.scene, this.camera), ...this.passes() ]
     passes[passes.length - 1].renderToScreen = true
     passes.forEach((pass) => this.composer.addPass(pass))
+
+    this.setup()
+  }
+
+  public dispose(): void {
+    this.composer.dispose()
+    this.renderer.dispose()
   }
 
   public run(): void {
@@ -50,6 +56,8 @@ abstract class Scene {
       this.composer.render(this.clock.getDelta())
     }
   }
+
+  protected abstract setup(): void
 
   protected abstract passes(): any[]
 

@@ -1,28 +1,22 @@
 import React from 'react'
-import Scene from 'src/gl/scene'
+import TestScene from 'src/gl/test-scene'
 import SimpleCubes from 'src/gl/simple-cubes'
 import Nav from 'src/components/nav'
+import Scene from 'src/components/scene'
+import { Switch, Route } from 'react-router'
 const styles = require('./home.scss')
 
 export class Home extends React.PureComponent<{}, {}> {
-
-  public refs: {
-    canvas: HTMLElement,
-  }
-
-  private scene: SimpleCubes
-
-  public componentDidMount() {
-    this.scene = new SimpleCubes(this.refs.canvas)
-    this.scene.run()
-  }
-
   public render(): JSX.Element {
     return (
       <div className={styles.home}>
         <Nav />
         <div className={styles.homeCanvasOverlay}></div>
-        <div ref='canvas' className={styles.homeCanvas}></div>
+        <Switch>
+          <Route exact path='/' component={() => <Scene scene={new SimpleCubes()} />} />
+          <Route path='/test' component={() => <Scene scene={new TestScene()} />} />
+          <Route path='/cubes' component={() => <Scene scene={new SimpleCubes()} />} />
+        </Switch>
         <div className={styles.homeText}>
           <h1>PS</h1><br />
           <h2>Paul Sastrasinh</h2><br />
