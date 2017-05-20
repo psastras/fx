@@ -14,6 +14,10 @@ export default class TestScene extends Scene {
     this.scene.add(this.cube)
   }
 
+  protected passes(): any[] {
+    return []
+  }
+
   protected render(dt: number): void {
     this.cube.rotation.x += 0.0001 * dt
     this.cube.rotation.y += 0.0001 * dt

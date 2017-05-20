@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import * as Color from 'color'
+import { BloomPass, BlurPass } from 'postprocessing'
 import Scene from './scene'
 
 interface ICube {
@@ -21,7 +22,7 @@ export default class SimpleCubes extends Scene {
   private cameraDirection: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
 
   constructor(element: HTMLElement, nCubes: number = 250, radius: number = 100, size = 10) {
-    super(element, false)
+    super(element)
 
     const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 50, specular: 30 })
     const scale = size * radius / nCubes
@@ -54,10 +55,21 @@ export default class SimpleCubes extends Scene {
     }
   }
 
+  protected passes(): any[] {
+    return [new BlurPass({
+      resolutionScale: 0.5,
+    }), new BloomPass({
+      distinction: 5.0,
+      resolutionScale: 0.5,
+      screenMode: false,
+      strength: 5.0,
+    })]
+  }
+
   protected render(dt: number): void {
     this.scene.rotateY(0.1 * dt)
     this.hue = this.hue + 5 * dt % 360
-    this.light.color = new THREE.Color(Color({h: this.hue, s: 50, v: 255}).rgbNumber())
+    this.light.color = new THREE.Color(Color({ h: this.hue, s: 50, v: 255 }).rgbNumber())
 
     for (const cube of this.cubes) {
       cube.objectPivot.rotateOnAxis(cube.rotationAxis, dt * cube.rotationSpeed)
@@ -70,7 +82,6 @@ export default class SimpleCubes extends Scene {
     this.cameraDirection = new THREE.Vector3()
       .addVectors(this.cameraDirection, cameraDelta.multiplyScalar(0.05))
     this.camera.lookAt(this.cameraDirection)
-    this.composer.render(dt)
   }
 
   private randCube(scale: number, radius: number, material: THREE.Material): ICube {

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { EffectComposer, BloomPass, BlurPass, RenderPass } from 'postprocessing'
+import { EffectComposer, RenderPass } from 'postprocessing'
 
 abstract class Scene {
 
@@ -38,21 +38,9 @@ abstract class Scene {
 
     this.composer = new EffectComposer(this.renderer)
     this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
-    this.composer.addPass(new RenderPass(this.scene, this.camera))
-
-    const bloomPass = new BloomPass({
-      distinction: 5.0,
-      resolutionScale: 0.5,
-      screenMode: false,
-      strength: 5.0,
-    })
-    const blurPass = new BlurPass({
-      resolutionScale: 0.5,
-    })
-    bloomPass.renderToScreen = true
-
-    this.composer.addPass(blurPass)
-    this.composer.addPass(bloomPass)
+    const passes = [ new RenderPass(this.scene, this.camera), ...this.passes() ]
+    passes[passes.length - 1].renderToScreen = true
+    passes.forEach((pass) => this.composer.addPass(pass))
   }
 
   public run(): void {
@@ -62,6 +50,8 @@ abstract class Scene {
       this.composer.render(this.clock.getDelta())
     }
   }
+
+  protected abstract passes(): any[]
 
   protected abstract render(dt: number): void
 
