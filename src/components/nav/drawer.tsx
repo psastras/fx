@@ -1,9 +1,9 @@
 import React from 'react'
 import fade from 'src/components/fade'
-import { Link } from 'react-router-dom'
+import Link from './link'
 import { connect } from 'react-redux'
 import { Dispatch, Action } from 'redux'
-import { toggleNav } from './actions';
+import { toggleNav } from './actions'
 import { IAppState } from 'src/app-reducer'
 const styles = require('./drawer.scss')
 
