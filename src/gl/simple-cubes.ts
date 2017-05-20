@@ -28,7 +28,6 @@ export default class SimpleCubes extends Scene {
   protected setup(): void {
     const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 50, specular: 30 })
     const scale = this.size * this.radius / this.nCubes
-
     this.light = new THREE.PointLight(0xffff00, 5, 150)
     this.light.position.set(50, 50, 50)
     this.scene.add(this.light)

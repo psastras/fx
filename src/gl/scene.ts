@@ -19,32 +19,21 @@ abstract class Scene {
     this.renderer = new THREE.WebGLRenderer({ canvas: element, alpha: true, antialias: true })
     this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
     this.renderer.setClearColor(0xffffff, 0)
-
-    window.removeEventListener('resize', () => {
-      // no-op
-    })
-    window.addEventListener('resize', () => {
-      if (this.camera instanceof THREE.PerspectiveCamera) {
-        this.camera.aspect = this.element.clientWidth / this.element.clientHeight
-        this.camera.updateProjectionMatrix()
-      }
-      this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
-      this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
-    }, false)
-
     this.camera = this.setupCamera(this.element.clientWidth, this.element.clientHeight)
     this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
 
     this.composer = new EffectComposer(this.renderer)
     this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
-    const passes = [ new RenderPass(this.scene, this.camera), ...this.passes() ]
+    const passes = [new RenderPass(this.scene, this.camera), ...this.passes()]
     passes[passes.length - 1].renderToScreen = true
     passes.forEach((pass) => this.composer.addPass(pass))
-
     this.setup()
+
+    window.addEventListener('resize', this.onWindowResize, false)
   }
 
   public dispose(): void {
+    window.removeEventListener('resize', this.onWindowResize, false)
     this.composer.dispose()
     this.renderer.dispose()
   }
@@ -67,6 +56,15 @@ abstract class Scene {
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000)
     camera.position.z = 0.5
     return camera
+  }
+
+  private onWindowResize = () => {
+    if (this.camera instanceof THREE.PerspectiveCamera) {
+      this.camera.aspect = this.element.clientWidth / this.element.clientHeight
+      this.camera.updateProjectionMatrix()
+    }
+    this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
+    this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
   }
 }
 
