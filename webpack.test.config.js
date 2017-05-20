@@ -30,7 +30,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ["style-loader", { 
+          loader: "css-loader",
+          options: {
+            modules: true,
+            camelCase: true,
+            importLoaders: 1,
+          }
+        }, "sass-loader"]
       },
       {
         test: /\.(jpe?g|png|gif|svg|eot|woff|svg|ttf|json)/,
