@@ -4,17 +4,19 @@ $fa-font-path:"../../../node_modules/font-awesome/fonts";
 @import "src/colors.scss";
 
 .nav {
-  position: absolute;
+  position: fixed;
   z-index: 3;
   top: 0;
   left: 0;
 }
 
 .navDrawer {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   min-width: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: rgba(255, 255, 255, 0.85);
   height: 100vh;
   border-right: 0.1rem solid $black;
