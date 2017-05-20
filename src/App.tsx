@@ -9,7 +9,6 @@ export class App extends React.Component<{}, {}> {
   public render(): JSX.Element {
     return (
       <div>
-        <Route exact path='/' component={Home as any} />
         <Route path='*' component={Home as any} />
       </div>
     )
