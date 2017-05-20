@@ -1,3 +1,5 @@
+$fa-font-path:"../../node_modules/font-awesome/fonts";
+@import "../../node_modules/font-awesome/scss/font-awesome";
 @import "src/vars.scss";
 @import "src/colors.scss";
 
@@ -84,9 +86,10 @@
 
 .home-text {
   text-align: center;
-  width: $mobile-width;
+  width: 100%;
   z-index: 2;
-  border: 0.5em solid $black;
+  border-top: 0.5em solid $black;
+  border-bottom: 0.5em solid $black;
   background: rgba(255, 255, 255, 0.85);
   position: absolute;
   top: 50%;
@@ -97,13 +100,14 @@
   @media screen and (min-width: $mobile-width) {
     width: auto;
     min-width: 300px;
+    border: 0.5em solid $black;
     box-shadow: $cyan -3px 0px 1px, $red 3px 0px 1px;
   }
 }
 
 .footer-end {
   text-transform: uppercase;
-  font-size: 0.3em;
+  font-size: 0.4em;
   letter-spacing: 0.1em;
   padding: 2em 0;
 
@@ -112,4 +116,14 @@
     right: 3em;
     padding: 0;
   }
+}
+
+.icon-github {
+  @extend .fa;
+  @extend .fa-github;
+}
+
+.icon-linkedin {
+  @extend .fa;
+  @extend .fa-linkedin-square;
 }

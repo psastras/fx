@@ -28,10 +28,10 @@ export class Home extends React.PureComponent<{}, {}> {
         </div>
         <div className={styles.homeFooter}>
           <a target='_blank' href='https://github.com/psastras'>
-            <i className='fa fa-github' aria-hidden='true'></i>
+            <i className={styles.iconGithub} aria-hidden='true'></i>
           </a>
           <a target='_blank' href='https://www.linkedin.com/in/paul-sastrasinh-82480153/'>
-            <i className='fa fa-linkedin-square' aria-hidden='true'></i>
+            <i className={styles.iconLinkedin} aria-hidden='true'></i>
           </a>
           <div className={styles.footerEnd}>
             <a target='_blank' href='https://github.com/psastras/fx'>Source Code</a>
