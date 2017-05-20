@@ -12,7 +12,7 @@ To spin up a development server with hot reloading enabled, run the following co
 and navigate to `localhost:3000`.
 
 ```shell
-yarn watch
+yarn start
 ```
 
 ## Building
