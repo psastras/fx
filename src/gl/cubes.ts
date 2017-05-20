@@ -57,13 +57,6 @@ export default class SimpleCubes extends Scene {
       cube.objectPivot.rotateOnAxis(cube.rotationAxis, dt * cube.rotationSpeed)
       cube.originPivot.rotateOnAxis(cube.rotationAxis, 0.1 * dt * cube.rotationSpeed)
     }
-
-    // gradually point the camera towards the cameraTarget
-    const cameraDelta = new THREE.Vector3()
-      .subVectors(this.cameraTarget, this.cameraDirection)
-    this.cameraDirection = new THREE.Vector3()
-      .addVectors(this.cameraDirection, cameraDelta.multiplyScalar(0.05))
-    this.camera.lookAt(this.cameraDirection)
   }
 
   private randCube(scale: number, radius: number, material: THREE.Material): ICube {

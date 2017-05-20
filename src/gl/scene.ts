@@ -8,8 +8,8 @@ abstract class Scene {
   protected scene: THREE.Scene
   protected renderer: THREE.WebGLRenderer
   protected camera: THREE.Camera
-  protected cameraTarget: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
-  protected cameraDirection: THREE.Vector3 = new THREE.Vector3(0, 0, 0)
+  protected cameraTarget: THREE.Vector3
+  protected cameraDirection: THREE.Vector3
   protected callRender: boolean
   protected composer: any
 
@@ -23,6 +23,8 @@ abstract class Scene {
     this.renderer.setClearColor(0xffffff, 0)
     this.camera = this.setupCamera(this.element.clientWidth, this.element.clientHeight)
     this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
+    this.cameraTarget = new THREE.Vector3(0, 0, 0)
+    this.cameraDirection = new THREE.Vector3(0, 0, 0)
 
     this.composer = new EffectComposer(this.renderer)
     this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
@@ -75,7 +77,7 @@ abstract class Scene {
   protected abstract render(dt: number): void
 
   protected setupCamera(width: number, height: number): THREE.Camera {
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.001, 100)
+    const camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 100)
     camera.position.z = 0.5
     return camera
   }
