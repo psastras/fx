@@ -8,6 +8,7 @@
     "jsx": "preserve",
     "target": "es2015",
     "baseUrl": "../",
+    "experimentalDecorators": true,
     "types": ["node"]
   }
 }

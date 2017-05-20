@@ -7,7 +7,8 @@ interface ISceneProps {
   scene: GLScene
 }
 
-class Scene extends React.Component<ISceneProps, {}> {
+@progress()
+export default class Scene extends React.Component<ISceneProps, {}> {
 
   public refs: {
     canvas: HTMLCanvasElement,
@@ -34,5 +35,3 @@ class Scene extends React.Component<ISceneProps, {}> {
     )
   }
 }
-
-export default progress(Scene)
