@@ -33,7 +33,7 @@ export class Home extends React.PureComponent<{}, {}> {
           <a target='_blank' href='https://www.linkedin.com/in/paul-sastrasinh-82480153/'>
             <i className='fa fa-linkedin-square' aria-hidden='true'></i>
           </a>
-          <div className='bottom-right'>
+          <div className='footer-end'>
             <a target='_blank' href='https://github.com/psastras/fx'>Source Code</a>
           </div>
         </div>
