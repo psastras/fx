@@ -44,15 +44,17 @@ $fa-font-path:"../../../node_modules/font-awesome/fonts";
 
 .navLinks {
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   padding: 0.25rem 0 0 0.25rem;
-  margin: 0.25rem 0 0 0.25rem;
+  margin: 0.25rem 0 1rem 0.25rem;
   list-style-type: none;
   letter-spacing: 0.1rem;
 
   a {
     color: $black;
+    display: block;
     text-decoration: none;
+    padding: 0.3rem 0;
 
     &:hover {
       color: dodgerblue;
@@ -60,7 +62,7 @@ $fa-font-path:"../../../node_modules/font-awesome/fonts";
   }
 
   li {
-    padding: 0.25em 0;
+    padding: 0;
   }
 
   border-bottom: 1px solid $black;
@@ -76,4 +78,22 @@ $fa-font-path:"../../../node_modules/font-awesome/fonts";
   @extend .icon;
   @extend .fa;
   @extend .fa-times;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 100ms ease-in;
 }

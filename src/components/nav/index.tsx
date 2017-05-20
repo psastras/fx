@@ -1,4 +1,5 @@
 import React from 'react'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { connect } from 'react-redux'
 import { Dispatch, Action } from 'redux'
 import { toggleNav } from './actions';
@@ -20,32 +21,39 @@ class Nav extends React.PureComponent<INavStateProps & INavDispatchProps, {}> {
     return (
       <div className={styles.nav}>
         <nav>
-          {!this.props.visible ?
-            <a onClick={this.handleClick}>
-              <i className={styles.iconNav} aria-hidden='true'></i>
-            </a> :
-            <div className={styles.navDrawer}>
-              <div className={styles.backgroundOverlay} onClick={this.handleClick} />
-              <a onClick={this.handleClick}>
-                <i className={styles.iconNav} aria-hidden='true'></i>
-              </a>
-              <div className={styles.navLinksContainer}>
-                <ul className={styles.navLinks}>
-                  <li>
-                    <Link to='/'>Home</Link>
-                  </li>
-                </ul>
-                <ul className={styles.navLinks}>
-                  <li>
-                    <a target='_blank' href='https://github.com/psastras'>GitHub</a>
-                  </li>
-                  <li>
-                    <a target='_blank' href='https://www.linkedin.com/in/paul-sastrasinh-82480153/'>LinkedIn</a>
-                  </li>
-                </ul>
+          <a onClick={this.handleClick}>
+            <i className={styles.iconNav} aria-hidden='true'></i>
+          </a>
+          <CSSTransitionGroup
+            transitionName={{
+              enter: styles.fadeEnter,
+              enterActive: styles.fadeEnterActive,
+              leave: styles.fadeLeave,
+              leaveActive: styles.fadeLeaveActive,
+            }}
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={100}>
+            {this.props.visible &&
+              <div className={styles.navDrawer}>
+                <div className={styles.backgroundOverlay} onClick={this.handleClick} />
+                <div className={styles.navLinksContainer}>
+                  <ul className={styles.navLinks}>
+                    <li>
+                      <Link to='/'>Home</Link>
+                    </li>
+                  </ul>
+                  <ul className={styles.navLinks}>
+                    <li>
+                      <a target='_blank' href='https://github.com/psastras'>GitHub</a>
+                    </li>
+                    <li>
+                      <a target='_blank' href='https://www.linkedin.com/in/paul-sastrasinh-82480153/'>LinkedIn</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          }
+            }
+          </CSSTransitionGroup>
         </nav>
       </div>
     )
