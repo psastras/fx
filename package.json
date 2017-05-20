@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/color": "^1.0.3",
     "@types/node": "^7.0.18",
+    "@types/nprogress": "^0.0.29",
     "@types/react-redux": "^4.4.40",
     "@types/react-router": "^4.0.9",
     "@types/react-router-dom": "^4.0.4",
@@ -68,6 +69,7 @@
   "dependencies": {
     "color": "^1.0.3",
     "font-awesome": "^4.7.0",
+    "nprogress": "^0.2.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-lite": "^0.15.35",

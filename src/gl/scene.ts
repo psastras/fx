@@ -36,6 +36,7 @@ abstract class Scene {
     window.removeEventListener('resize', this.onWindowResize, false)
     this.composer.dispose()
     this.renderer.dispose()
+    this.renderer.forceContextLoss()
   }
 
   public run(): void {

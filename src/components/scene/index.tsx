@@ -1,12 +1,13 @@
 import React from 'react'
 import GLScene from 'src/gl/scene'
+import { progress } from '../progress'
 const styles = require('./scene.scss')
 
 interface ISceneProps {
   scene: GLScene
 }
 
-export default class Scene extends React.Component<ISceneProps, {}> {
+class Scene extends React.Component<ISceneProps, {}> {
 
   public refs: {
     canvas: HTMLCanvasElement,
@@ -33,3 +34,5 @@ export default class Scene extends React.Component<ISceneProps, {}> {
     )
   }
 }
+
+export default progress(Scene)

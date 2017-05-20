@@ -1,6 +1,9 @@
+@import "./colors.scss";
 $fa-font-path:"../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome";
-@import "./colors.scss";
+:global {
+    @import "../node_modules/nprogress/nprogress";
+}
 
 @font-face {
     font-family: "Simplifica";
@@ -13,10 +16,10 @@ $fa-font-path:"../node_modules/font-awesome/fonts";
 }
 
 body {
-  background: radial-gradient(transparent, rgb(240, 240, 240));
-  color: $black;
-  margin: 0;
-  padding: 0;
-  font-family: Qanelas, Helvetica, Sans-Serif;
-  overflow: hidden;
+    background: radial-gradient(transparent, rgb(240, 240, 240));
+    color: $black;
+    margin: 0;
+    padding: 0;
+    font-family: Qanelas, Helvetica, Sans-Serif;
+    overflow: hidden;
 }

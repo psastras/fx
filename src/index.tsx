@@ -8,6 +8,7 @@ import AppReducer from './app-reducer'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import logger from 'redux-logger'
+import * as NProgress from 'nprogress'
 import './index.scss'
 
 declare const DEVELOPMENT: boolean
@@ -18,6 +19,8 @@ const middlewares = []
 if (process.env.NODE_ENV !== 'production') {
   middlewares.push(logger)
 }
+
+NProgress.configure({ showSpinner: false })
 
 const store = createStore(AppReducer, applyMiddleware(...middlewares))
 const render = (Component) =>
