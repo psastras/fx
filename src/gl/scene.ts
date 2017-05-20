@@ -75,7 +75,7 @@ abstract class Scene {
   protected abstract render(dt: number): void
 
   protected setupCamera(width: number, height: number): THREE.Camera {
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000)
+    const camera = new THREE.PerspectiveCamera(60, width / height, 0.001, 100)
     camera.position.z = 0.5
     return camera
   }
