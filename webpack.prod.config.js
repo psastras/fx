@@ -4,7 +4,10 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     index: './src/index.tsx',
-    vendor: ['react', 'react-dom', 'react-router', 'three', 'color', 'postprocessing']
+    vendor: [
+      'react', 'react-dom', 'react-router', 'three', 'color', 'postprocessing',
+      'react-redux', 'redux', 'redux-actions', 'react-router-dom', 'redux-logger'
+    ]
   },
 
   output: {

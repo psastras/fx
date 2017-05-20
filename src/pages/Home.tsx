@@ -1,6 +1,7 @@
 import React from 'react'
 import Scene from 'src/gl/scene'
-import TestScene from 'src/gl/simple-cubes'
+import SimpleCubes from 'src/gl/simple-cubes'
+import Nav from 'src/components/nav'
 const styles = require('./home.scss')
 
 export class Home extends React.PureComponent<{}, {}> {
@@ -9,16 +10,17 @@ export class Home extends React.PureComponent<{}, {}> {
     canvas: HTMLElement,
   }
 
-  private scene: TestScene
+  private scene: SimpleCubes
 
   public componentDidMount() {
-    this.scene = new TestScene(this.refs.canvas)
+    this.scene = new SimpleCubes(this.refs.canvas)
     this.scene.run()
   }
 
   public render(): JSX.Element {
     return (
       <div className={styles.home}>
+        <Nav />
         <div className={styles.homeCanvasOverlay}></div>
         <div ref='canvas' className={styles.homeCanvas}></div>
         <div className={styles.homeText}>

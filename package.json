@@ -30,8 +30,12 @@
   "devDependencies": {
     "@types/color": "^1.0.3",
     "@types/node": "^7.0.18",
+    "@types/react-redux": "^4.4.40",
     "@types/react-router": "^4.0.9",
     "@types/react-router-dom": "^4.0.4",
+    "@types/redux": "^3.6.0",
+    "@types/redux-actions": "^1.2.4",
+    "@types/redux-logger": "^3.0.0",
     "@types/three": "^0.84.7",
     "ava": "^0.19.1",
     "babel": "^6.23.0",
@@ -50,7 +54,6 @@
     "postprocessing": "^2.1.2",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "@next",
-    "react-router-dom": "^4.1.1",
     "sass-loader": "^6.0.5",
     "source-map-support": "^0.4.15",
     "style-loader": "^0.17.0",
@@ -67,7 +70,12 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-lite": "^0.15.35",
+    "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-actions": "^2.0.3",
+    "redux-logger": "^3.0.6",
     "three": "^0.85.2"
   }
 }
