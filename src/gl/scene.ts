@@ -34,22 +34,14 @@ abstract class Scene {
     this.setup()
 
     window.addEventListener('resize', this.onWindowResize, false)
-    document.onmousemove = (e: MouseEvent) => {
-      const x = (e.clientX - this.element.clientWidth / 2) / this.element.clientWidth
-      const y = (e.clientY - this.element.clientHeight / 2) / this.element.clientHeight
-      this.cameraTarget = new THREE.Vector3(-x, y, 0)
-    }
-
-    window.ondeviceorientation = (e: DeviceOrientationEvent) => {
-      // const z = e.alpha / 180.0 - 1
-      const x = e.gamma / 90.0 // left to right
-      const y = e.beta / 180.0 // front to back
-      this.cameraTarget = new THREE.Vector3(-x, y, 0)
-    }
+    window.addEventListener('mousemove', this.onMouseMove)
+    window.addEventListener('deviceorientation', this.onDeviceOrientation)
   }
 
   public dispose(): void {
     window.removeEventListener('resize', this.onWindowResize, false)
+    window.removeEventListener('mousemove', this.onMouseMove)
+    window.removeEventListener('deviceorientation', this.onDeviceOrientation)
     this.composer.dispose()
     this.renderer.dispose()
     this.renderer.forceContextLoss()
@@ -82,13 +74,25 @@ abstract class Scene {
     return camera
   }
 
-  private onWindowResize = () => {
+  private onWindowResize = (): void => {
     if (this.camera instanceof THREE.PerspectiveCamera) {
       this.camera.aspect = this.element.clientWidth / this.element.clientHeight
       this.camera.updateProjectionMatrix()
     }
     this.composer.setSize(this.element.clientWidth, this.element.clientHeight)
     this.renderer.setSize(this.element.clientWidth, this.element.clientHeight)
+  }
+
+  private onMouseMove = (e: MouseEvent): void => {
+    const x = (e.clientX - this.element.clientWidth / 2) / this.element.clientWidth
+    const y = (e.clientY - this.element.clientHeight / 2) / this.element.clientHeight
+    this.cameraTarget = new THREE.Vector3(-x, y, 0)
+  }
+
+  private onDeviceOrientation = (e: DeviceOrientationEvent): void => {
+    const x = e.gamma / 90.0 // left to right
+    const y = e.beta / 180.0 // front to back
+    this.cameraTarget = new THREE.Vector3(-x, y, 0)
   }
 }
 
