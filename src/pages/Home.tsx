@@ -4,20 +4,32 @@ import Cubes from 'src/gl/cubes'
 import Nav from 'src/components/nav'
 import Scene from 'src/components/scene'
 import { Switch, Route } from 'react-router'
+import * as MobileDetect from 'mobile-detect'
 const styles = require('./home.scss')
 
 export class Home extends React.PureComponent<{}, {}> {
 
   private homeTextContainer: HTMLDivElement
+  private isMobile: boolean
+
+  constructor() {
+    super()
+    const md = new MobileDetect(window.navigator.userAgent)
+    this.isMobile = !!md.mobile()
+  }
 
   public componentDidMount(): void {
-    document.addEventListener('mousemove', this.onMouseMove)
-    document.addEventListener('deviceorientation', this.onDeviceOrientation)
+    if (!this.isMobile) {
+      document.addEventListener('mousemove', this.onMouseMove)
+      document.addEventListener('deviceorientation', this.onDeviceOrientation)
+    }
   }
 
   public componentWillUnMount(): void {
-    document.removeEventListener('mousemove', this.onMouseMove)
-    document.removeEventListener('deviceorientation', this.onDeviceOrientation)
+    if (!this.isMobile) {
+      document.removeEventListener('mousemove', this.onMouseMove)
+      document.removeEventListener('deviceorientation', this.onDeviceOrientation)
+    }
   }
 
   public render(): JSX.Element {
