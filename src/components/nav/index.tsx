@@ -26,7 +26,7 @@ class Nav extends React.PureComponent<INavStateProps & INavDispatchProps, {}> {
             <i className={classnames(styles.iconNav, this.props.visible && styles.iconNavActive)}
               aria-hidden='true' />
           </a>
-          {this.props.visible && <Drawer /> }
+          {this.props.visible && <Drawer />}
         </nav>
       </div>
     )
