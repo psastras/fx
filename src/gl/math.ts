@@ -5,9 +5,9 @@ const randomNormal = (): number => {
 }
 
 const randomPointInSphere = (radius: number): number[] => {
-  const x1 = this.randNormal()
-  const x2 = this.randNormal()
-  const x3 = this.randNormal()
+  const x1 = randomNormal()
+  const x2 = randomNormal()
+  const x3 = randomNormal()
   const u = Math.random()
   const z = radius * Math.pow(u, 1 / 3) / Math.sqrt(x1 * x1 + x2 * x2 + x3 * x3)
   return [z * x1, z * x2, z * x3]
